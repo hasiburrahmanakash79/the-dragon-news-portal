@@ -2,7 +2,7 @@
 const Home = () => {
     return (
         <div>
-            <h1>This is home section........!!!!</h1>
+            <h2 className="text-center mb-4 fw-bold">The Dragon News</h2>
         </div>
     );
 };

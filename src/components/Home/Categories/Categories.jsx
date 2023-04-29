@@ -6,7 +6,7 @@ const Categories = () => {
 
     return (
         <div>
-            <h2>This Category news</h2>
+            <h2 className="text-center mb-4 fw-bold">The Dragon News</h2>
             {
                 categoryNews.map(news => <NewsCard
                     key={news._id}

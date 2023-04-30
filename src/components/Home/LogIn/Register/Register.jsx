@@ -1,10 +1,33 @@
+import { useContext } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const Register = () => {
+  const { registerUser } = useContext(AuthContext);
+
+  const handleRegister = event =>{
+    event.preventDefault()
+
+    const form = event.target;
+    const name = form.name.value
+    const photo = form.photo.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(name, photo, email, password);
+
+    registerUser(email, password)
+    .then(result => {
+       const createUser = result.user;
+       console.log(createUser);
+    })
+    .catch(error => console.log(error))
+  }
+
   return (
     <div className="bg-light p-5">
-      <Form className="w-50 rounded p-5 mx-auto bg-white">
+      <Form onSubmit={handleRegister} className="w-50 rounded p-5 mx-auto bg-white">
         <h2 className="text-center fw-bold pb-2">Registration your account</h2>
         <hr className="py-2" />
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -45,7 +68,11 @@ const Register = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" name="condition" label="Accept Term & Conditions" />
+          <Form.Check
+            type="checkbox"
+            name="condition"
+            label="Accept Term & Conditions"
+          />
         </Form.Group>
         <Button variant="secondary" type="submit" className="w-100">
           Register

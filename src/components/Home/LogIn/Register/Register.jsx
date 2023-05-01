@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const Register = () => {
   const { registerUser } = useContext(AuthContext);
+  const [message, setMessage] = useState()
 
   const handleRegister = event =>{
     event.preventDefault()
@@ -21,6 +22,7 @@ const Register = () => {
     .then(result => {
        const createUser = result.user;
        console.log(createUser);
+       form.reset()
     })
     .catch(error => console.log(error))
   }
